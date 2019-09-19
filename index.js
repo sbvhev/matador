@@ -8,19 +8,20 @@ require('dotenv').config();
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.post('/api/unsubscribe', (req, res) => {
+app.get('/api/unsubscribe', (req, res) => {
   const options = {
     method: 'DELETE',
     headers: {
       'content-type': 'application/x-www-form-urlencoded',
     },
     data: querystring.stringify({
-      emails: req.body.email,
+      emails: req.query.email,
       api_key: process.env.api_key,
     }),
     url: `https://a.klaviyo.com/api/v2/list/${process.env.list_id}/subscribe`,
     timeout: 3000,
   };
+  console.log(req.body.email);
   try {
     axios(options);
   } catch (err) {
