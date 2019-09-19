@@ -21,7 +21,6 @@ app.get('/api/unsubscribe', (req, res) => {
     url: `https://a.klaviyo.com/api/v2/list/${process.env.list_id}/subscribe`,
     timeout: 3000,
   };
-  console.log(req.body.email);
   try {
     axios(options);
   } catch (err) {
@@ -47,7 +46,7 @@ app.get('/api/check', async (req, res) => {
   }
 });
 
-const PORT = 5000;
+const PORT = 8080;
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
